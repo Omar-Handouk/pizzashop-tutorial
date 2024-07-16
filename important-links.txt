@@ -1,0 +1,11 @@
+https://learn.microsoft.com/en-us/nuget/consume-packages/managing-the-global-packages-and-cache-folders
+https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-web-api?view=aspnetcore-8.0&tabs=visual-studio
+https://learn.microsoft.com/en-us/training/modules/build-web-api-aspnet-core/8-exercise-implement-crud
+https://learn.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-8.0
+https://dev.to/colinmcdermott/restful-api-design-cheatsheet-2ji6
+https://learn.microsoft.com/en-us/dotnet/csharp/language-reference/builtin-types/collections
+https://www.c-sharpcorner.com/UploadFile/0c1bb2/ienumerable-interface-in-C-Sharp/
+https://learn.microsoft.com/en-us/dotnet/api/system.collections.generic.list-1.remove?view=net-8.0
+https://hamidmosalla.com/2017/03/29/asp-net-core-action-results-explained/
+https://stackademic.com/blog/a-comparative-analysis-of-iactionresult-and-actionresult-in-asp-net-core-fcc6cdbe779c
+https://learn.microsoft.com/en-us/aspnet/core/fundamentals/dependency-injection?view=aspnetcore-8.0
