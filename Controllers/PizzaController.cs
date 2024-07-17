@@ -15,7 +15,7 @@ public class PizzaController(ILogger<PizzaController> _logger) : ControllerBase
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public IActionResult Create([FromBody] Pizza pizza) {
         PizzaService.Add(pizza);
-        return CreatedAtAction(nameof(Create), new { id = pizza.PizzaId}, pizza);
+        return CreatedAtAction(nameof(Get), new { id = pizza.PizzaId}, pizza);
     }
     
     [HttpGet(Name = "GetAllPizzas")]
@@ -25,14 +25,41 @@ public class PizzaController(ILogger<PizzaController> _logger) : ControllerBase
     [HttpGet("{id}", Name = "GetPizzaById")]
     [ProducesResponseType(typeof(Pizza), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public ActionResult<Pizza> Get(int id) {
+    public ActionResult<Pizza> Get([FromRoute] int id) {
         Pizza? pizza = PizzaService.Get(id);
         return pizza != null ? pizza : NotFound();
     }
 
     [HttpPut("{id}", Name = "UpdatePizzaById")]
-    public IActionResult Update(int id, Pizza pizza) { return Ok();}
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult Update([FromRoute] int id,[FromBody] Pizza pizza) {
+        if (id != pizza.PizzaId) {
+            return BadRequest();
+        }
+        
+        Pizza? dbPizza = PizzaService.Get(id);
+        if (dbPizza is null) {
+            return NotFound();
+        }
+
+        PizzaService.Update(pizza);
+
+        return NoContent();
+    }
 
     [HttpDelete("{id}", Name = "DeletePizzaById")]
-    public IActionResult Delete(int id, Pizza pizza) { return Ok();}
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public IActionResult Delete([FromRoute] int id) {
+        Pizza? pizza = PizzaService.Get(id);
+        if (pizza == null) {
+            return NotFound();
+        }
+
+        PizzaService.Delete(id);
+
+        return NoContent();
+    }
 }
